@@ -31,8 +31,14 @@ function handleAlbumArtByName(req, res, next) {
     });
 }
 
+function handleComposeQuery(req, res, next) {
+  console.log('handling compose query, body is', req.body)
+  res.status(200).send('OK')
+}
+
 function setupRoutes() {
   app.get("/albumArtByName/:name", handleAlbumArtByName);
+  app.post("/composeExtension/query", handleComposeQuery)
 }
 
 function startServer() {

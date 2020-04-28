@@ -7,7 +7,7 @@
     "node": "12.x"
   },
   "scripts": {
-    "zip" : "bestzip albumart.zip public/floyd_192x192.png public/outline_icon_32x32.png src/manifest.json "
+    "package" : "gulp"
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -17,6 +17,8 @@
     "lodash": "^4.17.15"
   },
   "devDependencies": {
-    "bestzip": "^2.1.5"
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "gulp-zip": "^5.0.1"
   }
 }
