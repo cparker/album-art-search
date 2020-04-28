@@ -26,3 +26,5 @@ src/auth_config.json
 sample-geojson-from-gpx.json
 adventure-mapper.code-workspace
 .vscode
+
+src/manifest.json

@@ -11,7 +11,7 @@ const lastfmAlbumSearchAPI = `http://ws.audioscrobbler.com/2.0/?method=album.sea
 
 app.use(cors());
 app.use(bodyParser());
-app.use(express.static("."));
+app.use(express.static("public/"));
 
 function handleAlbumArtByName(req, res, next) {
   const missingImageURL = 'https://lastfm.freetls.fastly.net/i/u/300x300/0a3aac82f9fd440a99af1dbfac6ab96e.png'
