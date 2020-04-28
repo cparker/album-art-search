@@ -34,7 +34,7 @@ function handleAlbumArtByName(req, res, next) {
 }
 
 function handleComposeQuery(req, res, next) {
-  console.log('handling compose query, body is', req.body)
+  console.log('handling compose query, body is', JSON.stringify(req.body, null, 2))
   res.status(200).send('OK')
 }
 
