@@ -5,10 +5,12 @@ const PORT = process.env.PORT || 5000;
 const axios = require("axios");
 const bodyParser = require("body-parser");
 const _ = require('lodash')
+const morgan = require('morgan')
 
 const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
 const lastfmAlbumSearchAPI = `http://ws.audioscrobbler.com/2.0/?method=album.search&album=SEARCH_TERM&api_key=${LASTFM_API_KEY}&format=json`;
 
+app.use(morgan('combined'))
 app.use(cors());
 app.use(bodyParser());
 app.use(express.static("public/"));
