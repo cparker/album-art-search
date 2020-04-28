@@ -6,11 +6,17 @@
   "engines": {
     "node": "12.x"
   },
+  "scripts": {
+    "zip" : "bestzip albumart.zip public/floyd_192x192.png public/outline_icon_32x32.png src/manifest.json "
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "bestzip": "^2.1.5"
   }
 }
