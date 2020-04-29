@@ -58,7 +58,7 @@ async function getAlbumArtUrlByName(name) {
   })
 }
 
-function handleAlbumArtByName(req, res, next) {
+async function handleAlbumArtByName(req, res, next) {
   console.log("will search for", req.params.name);
   try {
     const url = await getAlbumArtUrlByName(req.params.name)
