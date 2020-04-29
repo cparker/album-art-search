@@ -1,0 +1,53 @@
+ {
+     "name": "composeExtension/query",
+     "type": "invoke",
+     "timestamp": "2020-04-28T20:06:12.185Z",
+     "localTimestamp": "2020-04-28T14:06:12.185-06:00",
+     "id": "f:1023871348751625439",
+     "channelId": "msteams",
+     "serviceUrl": "https://smba.trafficmanager.net/amer/",
+     "from": {
+       "id": "29:1_FAA5ecL919RRzbhxxk1jWTCHEu8yC9uEJWIMsn9m7nstOqt6wiP9lj9GRNxRoCOQD5I9wHIaf771hfLJunREg",
+       "name": "Christian 'CP' Parker",
+       "aadObjectId": "bb91006a-a6de-4535-b41c-aabd965101e6"
+     },
+     "conversation": {
+       "conversationType": "personal",
+       "tenantId": "c30f7674-85a4-4ef8-89e9-752ae8b01113",
+       "id": "a:1LU-F5nhw6hJC6qXl5zpF-AePXt3Mbg_NKIrOxoW4XKePdFBzg35hffBcoBq_LUykc5f30CprMluzAMSYGKGpJcCruETYPzhHDMEKXO6XJsb9MkNkrfqq0yj-M77hcGOX"
+     },
+     "recipient": {
+       "id": "28:c43e4490-c96d-4783-8601-3aafaaae962d",
+       "name": "albub-art-bot"
+     },
+     "entities": [
+       {
+         "locale": "en-US",
+         "country": "US",
+         "platform": "Mac",
+         "type": "clientInfo"
+       }
+     ],
+     "channelData": {
+       "tenant": {
+         "id": "c30f7674-85a4-4ef8-89e9-752ae8b01113"
+       },
+       "source": {
+         "name": "compose"
+       }
+     },
+     "value": {
+       "commandId": "us.cjparker.albumart.getAlbumByName",
+       "parameters": [
+         {
+           "name": "name",
+           "value": "ou812"
+         }
+       ],
+       "queryOptions": {
+         "skip": 0,
+         "count": 25
+       }
+     },
+     "locale": "en-US"
+   }
