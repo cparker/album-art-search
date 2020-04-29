@@ -11,7 +11,7 @@ const {
   BotFrameworkAdapter,
   ActivityTypes,
   TeamsActivityHandler,
-  CardsFactory,
+  CardFactory,
 } = require("botbuilder");
 
 const LASTFM_API_KEY = process.env.LASTFM_API_KEY;
