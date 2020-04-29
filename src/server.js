@@ -30,10 +30,10 @@ const adapter = new BotFrameworkAdapter({
   appPassword: process.env.APP_PW,
 });
 
-function handleAlbumArtByName(req, res, next) {
-  console.log("will search for", req.params.name);
-  axios
-    .get(lastfmAlbumSearchAPI.replace("SEARCH_TERM", req.params.name))
+async function getAlbumArtUrlByName(name) {
+  return new Promise((resolve, reject) => {
+    axios
+    .get(lastfmAlbumSearchAPI.replace("SEARCH_TERM", name))
     .then((response) => {
       const images = _.get(
         response.data,
@@ -48,19 +48,33 @@ function handleAlbumArtByName(req, res, next) {
         largestImageURL && largestImageURL.length > 0
           ? largestImageURL
           : missingImageURL;
-      res.status(200).send(finalResult);
+
+      resolve(finalResult)
     })
     .catch((err) => {
       console.log("error searching for album", err);
-      res.status(500).send(err);
+      reject(err)
     });
+  })
+}
+
+function handleAlbumArtByName(req, res, next) {
+  console.log("will search for", req.params.name);
+  try {
+    const url = await getAlbumArtUrlByName(req.params.name)
+    res.status(200).send(url)
+  } catch (err) {
+    res.status(500).send(err)
+  }
 }
 
 class MessageExtension extends TeamsActivityHandler {
   async handleTeamsMessagingExtensionQuery(context, query) {
+    console.log('query looks like', JSON.stringify(query))
+    const url = await getAlbumArtUrlByName(query.parameters[0].value)
     const imageCard = CardFactory.heroCard(
       "album image card",
-      CardFactory.images([missingImageURL])
+      CardFactory.images([url])
     );
 
     return {
@@ -78,7 +92,7 @@ class MessageExtension extends TeamsActivityHandler {
 const messageExtension = new MessageExtension();
 
 function handleBotMessages(req, res, next) {
-  console.log("handleBotMessages", req.body);
+  console.log("handleBotMessages", JSON.stringify(req.body, null, 2));
   adapter.processActivity(req, res, async (context) => {
     if (context.activity.type === ActivityTypes.Invoke) {
       await messageExtension.run(context);
