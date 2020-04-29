@@ -39,17 +39,23 @@ async function getAlbumArtUrlByName(name) {
         response.data,
         "results.albummatches.album[0].image"
       );
+      const artist = _.get(response.data, 'results.albummatches.album[0].artist', '')
+      const albumName = _.get(response.data, 'results.albummatches.album[0].name', '')
       console.log("images is", images);
       const largestImageURL =
         images && images.length
           ? images[images.length - 1]["#text"]
           : missingImageURL;
-      const finalResult =
+      const imageURL =
         largestImageURL && largestImageURL.length > 0
           ? largestImageURL
           : missingImageURL;
 
-      resolve(finalResult)
+      resolve({
+        imageURL, 
+        artist,
+        albumName
+      })
     })
     .catch((err) => {
       console.log("error searching for album", err);
@@ -61,8 +67,8 @@ async function getAlbumArtUrlByName(name) {
 async function handleAlbumArtByName(req, res, next) {
   console.log("will search for", req.params.name);
   try {
-    const url = await getAlbumArtUrlByName(req.params.name)
-    res.status(200).send(url)
+    const info = await getAlbumArtUrlByName(req.params.name)
+    res.status(200).send(info)
   } catch (err) {
     res.status(500).send(err)
   }
@@ -71,10 +77,10 @@ async function handleAlbumArtByName(req, res, next) {
 class MessageExtension extends TeamsActivityHandler {
   async handleTeamsMessagingExtensionQuery(context, query) {
     console.log('query looks like', JSON.stringify(query))
-    const url = await getAlbumArtUrlByName(query.parameters[0].value)
+    const {imageURL, artist, albumName} = await getAlbumArtUrlByName(query.parameters[0].value)
     const imageCard = CardFactory.heroCard(
-      "album image card",
-      CardFactory.images([url])
+      `${albumName} - ${artist}`,
+      CardFactory.images([imageURL])
     );
 
     return {
