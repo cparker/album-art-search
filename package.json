@@ -10,7 +10,7 @@
     "package": "gulp"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "botbuilder": "^4.8.0",
     "botbuilder-teams": "^0.2.9",
