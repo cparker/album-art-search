@@ -16,7 +16,7 @@
     "botbuilder-teams": "^0.2.9",
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
